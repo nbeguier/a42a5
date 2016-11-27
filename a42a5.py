@@ -1,31 +1,44 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 """ A4 to A5 """
 
+# Standard library imports
+from __future__ import print_function
 from argparse import ArgumentParser
-import PyPDF2
+# Related third party imports
+from PyPDF2 import PdfFileReader, PdfFileWriter
 
 
-def split(input_file, output_file, margin_up, margin_down, margin_left, margin_right, inter):
+def split(input_file, output_file, filters=None):
     """ Split func """
+    filters_dict = {'margin_up': 0,
+                    'margin_down': 0,
+                    'margin_right': 0,
+                    'margin_left': 0,
+                    'inter': 10}
+    filters_dict.update(filters)
     pdf_in_up = open(input_file, 'rb')
     pdf_in_down = open(input_file, 'rb')
-    pdf_reader_up = PyPDF2.PdfFileReader(pdf_in_up)
-    pdf_reader_down = PyPDF2.PdfFileReader(pdf_in_down)
-    pdf_writer = PyPDF2.PdfFileWriter()
+    pdf_reader_up = PdfFileReader(pdf_in_up)
+    pdf_reader_down = PdfFileReader(pdf_in_down)
+    pdf_writer = PdfFileWriter()
 
     for pagenum in range(pdf_reader_up.numPages):
         page_up = pdf_reader_up.getPage(pagenum)
         page_down = pdf_reader_down.getPage(pagenum)
         max_x = page_up.mediaBox.getUpperRight_x()
         max_y = page_up.mediaBox.getUpperRight_y()
-        max_y_resized = max_y - margin_up + margin_down
+        max_y_resized = max_y - filters_dict['margin_up'] + filters_dict['margin_down']
         # PAGE UP
-        page_up.cropBox.upperRight = (max_x - margin_right, max_y - margin_up)
-        page_up.cropBox.lowerLeft = (margin_left, max_y_resized/2 - inter)
+        page_up.cropBox.upperRight = (
+            max_x - filters_dict['margin_right'], max_y - filters_dict['margin_up'])
+        page_up.cropBox.lowerLeft = (
+            filters_dict['margin_left'], max_y_resized/2 - filters_dict['inter'])
         # PAGE DOWN
-        page_down.cropBox.upperRight = (max_x - margin_right, max_y_resized/2 + inter)
-        page_down.cropBox.lowerLeft = (margin_left, margin_down)
+        page_down.cropBox.upperRight = (
+            max_x - filters_dict['margin_right'], max_y_resized/2 + filters_dict['inter'])
+        page_down.cropBox.lowerLeft = (
+            filters_dict['margin_left'], filters_dict['margin_down'])
         pdf_writer.addPage(page_up)
         pdf_writer.addPage(page_down)
 
@@ -39,9 +52,9 @@ if __name__ == '__main__':
     CSV_ROOT_PATH = '.'
     PARSER = ArgumentParser()
 
-    PARSER.add_argument('--input', '-i', action='store',
+    PARSER.add_argument('input', action='store',
                         help='Input file')
-    PARSER.add_argument('--output', '-o', action='store',
+    PARSER.add_argument('output', action='store',
                         help='Output file')
     PARSER.add_argument('--up', default=0, action='store',
                         help='Margin up')
@@ -56,6 +69,8 @@ if __name__ == '__main__':
 
     ARGS = PARSER.parse_args()
 
-    split(ARGS.input, ARGS.output,
-          int(ARGS.up), int(ARGS.down), int(ARGS.left), int(ARGS.right),
-          int(ARGS.inter))
+    split(ARGS.input, ARGS.output, filters={'margin_up': int(ARGS.up),
+                                            'margin_down': int(ARGS.down),
+                                            'margin_right': int(ARGS.right),
+                                            'margin_left': int(ARGS.left),
+                                            'inter': int(ARGS.inter)})
