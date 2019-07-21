@@ -1,0 +1,15 @@
+language: python
+dist: xenial
+python:
+  - 3.4
+  - 3.5
+  - 3.6
+  - 3.7
+  - 3.7-dev
+install:
+  - pip3 install pylint
+  - pip3 install -r requirements.txt
+script:
+  - pylint a42a5.py -d too-many-locals
+  - python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf --up 100 --down 100 --left 10 --right 5 --inter 20
+  - file output_A5.pdf

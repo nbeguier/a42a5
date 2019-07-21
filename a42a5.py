@@ -1,16 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 """ A4 to A5 """
 
 # Standard library imports
-from __future__ import print_function
 from argparse import ArgumentParser
 # Related third party imports
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
-
 def split(input_file, output_file, filters=None):
-    """ Split func """
+    """ Split function """
     filters_dict = {'margin_up': 0,
                     'margin_down': 0,
                     'margin_right': 0,
@@ -42,9 +40,8 @@ def split(input_file, output_file, filters=None):
         pdf_writer.addPage(page_up)
         pdf_writer.addPage(page_down)
 
-    pdf_out = open(output_file, 'wb')
-    pdf_writer.write(pdf_out)
-    pdf_out.close()
+    with open(output_file, 'wb') as pdf_out:
+        pdf_writer.write(pdf_out)
     pdf_in_up.close()
     pdf_in_down.close()
 
