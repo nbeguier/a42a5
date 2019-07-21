@@ -1,6 +1,6 @@
 # A4 to A5
 
-[![Build Status](https://travis-ci.org/nbeguier/a42a5.svg?branch=master)](https://travis-ci.org/nbeguier/a42a5) [![Python 3.4|3.7](https://img.shields.io/badge/python-3.2|3.7-green.svg)](https://www.python.org/) [![License](https://img.shields.io/badge/Licence-Apache%202.0-blue.svg)](https://github.com/nbeguier/a42a5/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/nbeguier/a42a5.svg?branch=master)](https://travis-ci.org/nbeguier/a42a5) [![Python 3.4|3.7](https://img.shields.io/badge/python-3.4|3.7-green.svg)](https://www.python.org/) [![License](https://img.shields.io/badge/Licence-Apache%202.0-blue.svg)](https://github.com/nbeguier/a42a5/blob/master/LICENSE)
 
 ## Prerequisites
 
