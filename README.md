@@ -1,12 +1,17 @@
-#A4 to A5
+# A4 to A5
 
-This is a fork of https://github.com/mstamy2/PyPDF2.
+[![Build Status](https://travis-ci.org/nbeguier/a42a5.svg?branch=master)](https://travis-ci.org/nbeguier/a42a5) [![Python 3.4|3.7](https://img.shields.io/badge/python-3.2|3.7-green.svg)](https://www.python.org/) [![License](https://img.shields.io/badge/Licence-Apache%202.0-blue.svg)](https://github.com/nbeguier/a42a5/blob/master/LICENSE)
 
-
-##Examples
+## Prerequisites
 
 ```bash
-# python a42a5.py --help
+pip3 install -r requirements.txt
+```
+
+## Usage
+
+```bash
+# python3 a42a5.py --help
 usage: a42a5.py [-h] [--up UP] [--down DOWN] [--left LEFT] [--right RIGHT]
                 [--inter INTER]
                 input output
@@ -24,10 +29,12 @@ optional arguments:
   --inter INTER  Intersection between two pages
 ```
 
+## Examples
+
 ```bash
 # Easy use
-python a42a5.py /home/Mastering-Bitcoin.pdf output.pdf
+python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf
 
 # More complex
-python a42a5.py /home/Mastering-Bitcoin.pdf output.pdf --up 100 --down 100 --left 10 --right 5 --inter 20
+python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf --up 100 --down 100 --left 10 --right 5 --inter 20
 ```
