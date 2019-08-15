@@ -13,7 +13,7 @@ pip3 install -r requirements.txt
 ```bash
 # python3 a42a5.py --help
 usage: a42a5.py [-h] [--up UP] [--down DOWN] [--left LEFT] [--right RIGHT]
-                [--inter INTER]
+                [--inter INTER] [--reverse]
                 input output
 
 positional arguments:
@@ -27,6 +27,7 @@ optional arguments:
   --left LEFT    Margin left
   --right RIGHT  Margin right
   --inter INTER  Intersection between two pages
+  --reverse      Cut vertically rather than horizontally
 ```
 
 ## Examples
@@ -37,4 +38,7 @@ python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf
 
 # More complex
 python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf --up 100 --down 100 --left 10 --right 5 --inter 20
+
+# Cut horizontally
+python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf --reverse
 ```
