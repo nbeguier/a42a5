@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
-#-*- coding: utf-8 -*-
-""" A4 to A5 """
+"""
+A4 to A5
+
+Copyright 2019 Nicolas Béguier
+Licensed under the Apache License
+Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
+"""
+# pylint: disable=too-many-locals
 
 # Standard library imports
 from argparse import ArgumentParser
 # Related third party imports
 from PyPDF2 import PdfFileReader, PdfFileWriter
+
+VERSION = '1.0.1'
 
 def split(input_file, output_file, filters=None, reverse=False):
     """ Split function """
@@ -61,6 +69,8 @@ def split(input_file, output_file, filters=None, reverse=False):
 if __name__ == '__main__':
     CSV_ROOT_PATH = '.'
     PARSER = ArgumentParser()
+
+    PARSER.add_argument('--version', action='version', version=VERSION)
 
     PARSER.add_argument('input', action='store',
                         help='Input file')
