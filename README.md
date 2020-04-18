@@ -44,3 +44,9 @@ python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf --up 100 --down 100 --
 # Cut horizontally
 python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf --reverse
 ```
+
+# License
+Licensed under the [Apache License](https://github.com/nbeguier/a42a5/blob/master/LICENSE), Version 2.0 (the "License").
+
+# Copyright
+Copyright 2019-2020 Nicolas Béguier; ([nbeguier](https://beguier.eu/nicolas/) - nicolas_beguier[at]hotmail[dot]com)

@@ -2,7 +2,7 @@
 """
 A4 to A5
 
-Copyright 2019 Nicolas Béguier
+Copyright 2019-2020 Nicolas Béguier
 Licensed under the Apache License
 Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
 """
