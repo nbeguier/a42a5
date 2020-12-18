@@ -1,6 +1,6 @@
 # A4 to A5
 
-[![Build Status](https://travis-ci.org/nbeguier/a42a5.svg?branch=master)](https://travis-ci.org/nbeguier/a42a5) [![Python 3.4|3.9](https://img.shields.io/badge/python-3.4|3.9-green.svg)](https://www.python.org/) [![License](https://img.shields.io/github/license/nbeguier/a42a5?color=blue)](https://github.com/nbeguier/a42a5/blob/master/LICENSE)
+[![Build Status](https://travis-ci.com/nbeguier/a42a5.svg?branch=master)](https://travis-ci.com/nbeguier/a42a5) [![Python 3.4|3.9](https://img.shields.io/badge/python-3.4|3.9-green.svg)](https://www.python.org/) [![License](https://img.shields.io/github/license/nbeguier/a42a5?color=blue)](https://github.com/nbeguier/a42a5/blob/master/LICENSE)
 
 This tool can convert AX pdf to A(X+1) pdf ! Useful to read large pdf on a reading device.
 
