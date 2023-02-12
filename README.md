@@ -43,6 +43,9 @@ python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf --up 100 --down 100 --
 
 # Cut horizontally
 python3 a42a5.py PDF_Samples/example_A4.pdf output_A5.pdf --reverse
+
+# Merger
+python3 merger.py output_A5.pdf PDF_Samples/example_A4.pdf
 ```
 
 # License
