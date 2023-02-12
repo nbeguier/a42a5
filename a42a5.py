@@ -10,10 +10,12 @@ Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
 
 # Standard library imports
 from argparse import ArgumentParser
+from pathlib import Path
+
 # Related third party imports
 from PyPDF2 import PdfReader, PdfWriter
 
-VERSION = '1.0.1'
+VERSION = '1.1.0'
 
 def split(input_file, output_file, filters=None, reverse=False):
     """ Split function """
@@ -23,8 +25,8 @@ def split(input_file, output_file, filters=None, reverse=False):
                     'margin_left': 0,
                     'inter': 10}
     filters_dict.update(filters)
-    pdf_in_up = open(input_file, 'rb')
-    pdf_in_down = open(input_file, 'rb')
+    pdf_in_up = Path(input_file).open('rb')
+    pdf_in_down = Path(input_file).open('rb')
     pdf_reader_up = PdfReader(pdf_in_up)
     pdf_reader_down = PdfReader(pdf_in_down)
     pdf_writer = PdfWriter()
@@ -61,10 +63,8 @@ def split(input_file, output_file, filters=None, reverse=False):
         pdf_writer.add_page(page_up)
         pdf_writer.add_page(page_down)
 
-    with open(output_file, 'wb') as pdf_out:
-        pdf_writer.write(pdf_out)
-    pdf_in_up.close()
-    pdf_in_down.close()
+    output_path = Path(output_file).open('wb')
+    pdf_writer.write(output_path)
 
 if __name__ == '__main__':
     CSV_ROOT_PATH = '.'
