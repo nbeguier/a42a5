@@ -1,4 +1,5 @@
 *.pyc
+venv
 *.swp
 .DS_Store
 output.pdf

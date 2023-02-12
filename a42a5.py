@@ -2,7 +2,7 @@
 """
 A4 to A5
 
-Copyright 2019-2021 Nicolas Béguier
+Copyright 2019-2023 Nicolas Béguier
 Licensed under the Apache License
 Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
 """
@@ -11,7 +11,7 @@ Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
 # Standard library imports
 from argparse import ArgumentParser
 # Related third party imports
-from PyPDF2 import PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfReader, PdfWriter
 
 VERSION = '1.0.1'
 
@@ -25,41 +25,41 @@ def split(input_file, output_file, filters=None, reverse=False):
     filters_dict.update(filters)
     pdf_in_up = open(input_file, 'rb')
     pdf_in_down = open(input_file, 'rb')
-    pdf_reader_up = PdfFileReader(pdf_in_up)
-    pdf_reader_down = PdfFileReader(pdf_in_down)
-    pdf_writer = PdfFileWriter()
+    pdf_reader_up = PdfReader(pdf_in_up)
+    pdf_reader_down = PdfReader(pdf_in_down)
+    pdf_writer = PdfWriter()
 
-    for pagenum in range(pdf_reader_up.numPages):
-        page_up = pdf_reader_up.getPage(pagenum)
-        page_down = pdf_reader_down.getPage(pagenum)
-        max_x = page_up.mediaBox.getUpperRight_x()
-        max_y = page_up.mediaBox.getUpperRight_y()
+    for pagenum in range(len(pdf_reader_up.pages)):
+        page_up = pdf_reader_up.pages[pagenum]
+        page_down = pdf_reader_down.pages[pagenum]
+        max_x = page_up.mediabox.right
+        max_y = page_up.mediabox.top
         if reverse:
             max_x_resized = max_x - filters_dict['margin_right'] + filters_dict['margin_left']
             # PAGE LEFT
-            page_up.cropBox.upperRight = (
+            page_up.cropbox.upper_right = (
                 max_x_resized/2 + filters_dict['inter'], max_y - filters_dict['margin_up'])
-            page_up.cropBox.lowerLeft = (
+            page_up.cropbox.lower_left = (
                 filters_dict['margin_left'], filters_dict['margin_down'])
             # PAGE RIGHT
-            page_down.cropBox.upperRight = (
+            page_down.cropbox.upper_right = (
                 max_x - filters_dict['margin_right'], max_y - filters_dict['margin_up'])
-            page_down.cropBox.lowerLeft = (
+            page_down.cropbox.lower_left = (
                 max_x_resized/2 - filters_dict['inter'], filters_dict['margin_down'])
         else:
             max_y_resized = max_y - filters_dict['margin_up'] + filters_dict['margin_down']
             # PAGE UP
-            page_up.cropBox.upperRight = (
+            page_up.cropbox.upper_right = (
                 max_x - filters_dict['margin_right'], max_y - filters_dict['margin_up'])
-            page_up.cropBox.lowerLeft = (
+            page_up.cropbox.lower_left = (
                 filters_dict['margin_left'], max_y_resized/2 - filters_dict['inter'])
             # PAGE DOWN
-            page_down.cropBox.upperRight = (
+            page_down.cropbox.upper_right = (
                 max_x - filters_dict['margin_right'], max_y_resized/2 + filters_dict['inter'])
-            page_down.cropBox.lowerLeft = (
+            page_down.cropbox.lower_left = (
                 filters_dict['margin_left'], filters_dict['margin_down'])
-        pdf_writer.addPage(page_up)
-        pdf_writer.addPage(page_down)
+        pdf_writer.add_page(page_up)
+        pdf_writer.add_page(page_down)
 
     with open(output_file, 'wb') as pdf_out:
         pdf_writer.write(pdf_out)
