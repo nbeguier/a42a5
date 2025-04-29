@@ -52,4 +52,4 @@ python3 merger.py output_A5.pdf PDF_Samples/example_A4.pdf
 Licensed under the [Apache License](https://github.com/nbeguier/a42a5/blob/master/LICENSE), Version 2.0 (the "License").
 
 # Copyright
-Copyright 2019-2023 Nicolas Béguier; ([nbeguier](https://beguier.eu/nicolas/) - nicolas_beguier[at]hotmail[dot]com)
+Copyright 2019-2025 Nicolas Béguier; ([nbeguier](https://beguier.eu/nicolas/) - nicolas_beguier[at]hotmail[dot]com)
