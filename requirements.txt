@@ -1,2 +1,2 @@
-pypdf>=3.9.0
-img2pdf==0.4.4
+pypdf>=5.4.0
+img2pdf>=0.4.4

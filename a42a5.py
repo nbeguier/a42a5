@@ -2,7 +2,7 @@
 """
 A4 to A5
 
-Copyright 2019-2023 Nicolas Béguier
+Copyright 2019-2025 Nicolas Béguier
 Licensed under the Apache License
 Written by Nicolas BEGUIER (nicolas_beguier@hotmail.com)
 """
@@ -13,9 +13,9 @@ from argparse import ArgumentParser
 from pathlib import Path
 
 # Related third party imports
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter
 
-VERSION = '1.1.0'
+VERSION = '1.1.1'
 
 def split(input_file, output_file, filters=None, reverse=False):
     """ Split function """
@@ -65,6 +65,8 @@ def split(input_file, output_file, filters=None, reverse=False):
 
     output_path = Path(output_file).open('wb')
     pdf_writer.write(output_path)
+
+    print(f'Document saved at: {output_file}')
 
 if __name__ == '__main__':
     CSV_ROOT_PATH = '.'
