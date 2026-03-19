@@ -18,11 +18,14 @@ import img2pdf
 # Debug
 # from pdb import set_trace as st
 
-VERSION = '1.1.1'
+VERSION = '1.1.2'
 
 merger = PdfWriter()
 for filename in sys.argv[1:]:
-    file_path = Path(filename)
+    file_path = Path(filename).resolve()
+    if not file_path.exists() or not file_path.is_file():
+        print(f'Error: {filename} is not a valid file, skipping.')
+        continue
     if file_path.suffix.lower() == '.pdf':
         merger.append(PdfReader(file_path.open('rb')))
     elif file_path.suffix.lower() in ['.jpg', '.jpeg', '.png']:
